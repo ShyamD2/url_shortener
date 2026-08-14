@@ -9,6 +9,10 @@ A simple, self-contained URL shortener built with Flask and SQLite.
 - Click tracking per link
 - Simple web UI + JSON API
 - Recent links table on the homepage
+- 
+## Output
+
+![Output Screenshot](./Screenshot.png)
 
 ## Setup
 
