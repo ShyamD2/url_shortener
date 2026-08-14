@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}URL Shortener{% endblock %}
+{% block content %}
+<h1>🔗 URL Shortener</h1>
+<p class="subtitle">Paste a long URL and get a short one back.</p>
+
+<div class="card">
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+    <form action="/shorten" method="post">
+        <input type="url" name="url" placeholder="https://example.com/some/very/long/link" required>
+        <div class="row">
+            <input type="text" name="custom_code" placeholder="Custom code (optional)">
+            <button type="submit">Shorten</button>
+        </div>
+    </form>
+</div>
+
+<div class="card">
+    <h3 style="margin-top:0;">Recent links</h3>
+    {% if urls %}
+    <table>
+        <tr>
+            <th>Short URL</th>
+            <th>Original</th>
+            <th>Clicks</th>
+        </tr>
+        {% for u in urls %}
+        <tr>
+            <td><a href="/{{ u['short_code'] }}" target="_blank">{{ short_base }}{{ u['short_code'] }}</a></td>
+            <td><span class="original" title="{{ u['original_url'] }}">{{ u['original_url'] }}</span></td>
+            <td><a href="/stats/{{ u['short_code'] }}">{{ u['clicks'] }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p class="empty">No links yet. Shorten your first URL above!</p>
+    {% endif %}
+</div>
+{% endblock %}

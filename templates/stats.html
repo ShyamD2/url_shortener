@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Stats · {{ url['short_code'] }}{% endblock %}
+{% block content %}
+<h1>📊 Link Stats</h1>
+<p class="subtitle"><a href="/">&larr; Back to shortener</a></p>
+
+<div class="card">
+    <table>
+        <tr><th>Short URL</th><td><a href="/{{ url['short_code'] }}" target="_blank">{{ short_base }}{{ url['short_code'] }}</a></td></tr>
+        <tr><th>Original URL</th><td style="word-break:break-all;">{{ url['original_url'] }}</td></tr>
+        <tr><th>Created</th><td>{{ url['created_at'] }}</td></tr>
+        <tr><th>Total clicks</th><td>{{ url['clicks'] }}</td></tr>
+    </table>
+</div>
+{% endblock %}
